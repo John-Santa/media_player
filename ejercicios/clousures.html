@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=a, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <a href="/ejercicios/">Go back</a>
+    <p><em>Abre la consola!</em></p>
+
+    <script>
+        /**
+         * Cloure
+         * Es la convinacion de la funcion con el scope en el cual fue definida
+         * nos permite el crear variables privadas dentro de una funcion.
+         */
+        /**
+         * IIFE
+         * Inmediatly Invoked Function Expression
+        */
+        /*(function() {
+            let color = 'the color is green';
+
+            function printColor() {
+                console.log(color);
+            }
+
+            printColor();
+        })();*/
+
+        /**
+         * Funciones que regresan funciones
+         * Es una funcion que regresa otra funcion
+         */
+        function makeColorPrinter(color) {
+            let colorMessage = `The color is ${color}`;
+            return function() {
+                console.log(colorMessage);
+            }
+        }
+
+        let greenColorPrinter = makeColorPrinter('green');
+        console.log(greenColorPrinter());
+
+        /**
+         * Variables privadas
+         * Es una variable que solo puede ser accedida desde dentro de la funcion
+        */
+        function makeCounter(n){
+            let count = n;
+            return {
+                increase: function(){
+                    count++;
+                },
+                decrease: function(){
+                    count--;
+                },
+                getCount: function(){
+                    return count;
+                }
+            }
+        }
+
+        let counter = makeCounter(10);
+        console.log(`The count is ${counter.getCount()}`);
+        counter.increase();
+        console.log(`The count is ${counter.getCount()}`);
+        counter.decrease();
+        counter.decrease();
+        counter.decrease();
+        counter.decrease();
+        console.log(`The count is ${counter.getCount()}`);
+
+        counter.count = 0;
+        console.log(`The count is ${counter.getCount()}`);
+    </script>
+</body>
+</html>
