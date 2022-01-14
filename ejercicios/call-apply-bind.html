@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <a href="/ejercicios/">Go back</a>
+    <p><em>Abre la consola</em></p>
+
+    <ul>
+        <li><button class="call-to-action">Aprender</button></li>
+        <li><button class="call-to-action">Aprender mas</button></li>
+        <li><button class="call-to-action">Nunca parar de aprender!</button></li>
+    </ul>
+
+    <script>
+        /**
+         * Call
+         * establece this
+         * call establece el alcance de this
+        */
+        function sayHello(){
+            console.log(`Hello, i am ${this.name} ${this.lastName}`);
+        }
+
+        const juan = {
+            name: 'Juan',
+            lastName: 'Perez',
+        };
+
+        /**
+         * call
+         * this apunta al objeto juan
+         * el primer argumento es el objeto al que se le quiere establecer this
+        */
+        sayHello.call(juan);
+
+        function walk(meters, direction){
+            console.log(`${this.name} walk ${meters} meters to the ${direction}`);
+        }
+
+        walk.call(juan, 1000, 'north');
+
+        /**
+         * apply
+         * this apunta al objeto juan
+         * el primer argumento es el objeto al que se le quiere establecer this
+         * el segundo argumento es un array con los argumentos que se le pasan a la funcion
+         * en este caso el segundo argumento es un array vacio
+         * el tercer argumento es un booleano que indica si se quiere que los argumentos sean pasados como un array
+         * en este caso el tercer argumento es false
+        */
+       const values = [1000, 'north'];
+       walk.apply(juan, values);
+
+         /**
+          * Bind
+          * establece this
+          * bind establece el alcance de this
+          * bind no ejecuta la funcion
+          * bind retorna una funcion que se puede ejecutar con los argumentos que se le pasan
+          * en este caso el primer argumento es el objeto al que se le quiere establecer this
+          * en este caso el segundo argumento es un array con los argumentos que se le pasan a la funcion
+          * en este caso el tercer argumento es un booleano que indica si se quiere que los argumentos sean pasados como un array
+          * en este caso el tercer argumento es false
+          */
+
+        const john = {
+            name: 'John',
+            lastName: 'Santa',
+        };
+
+        const johnSayHello = sayHello.bind(john);
+        johnSayHello();
+
+        const johnWalker = walk.bind(john, 1000, 'north');
+
+        //Cuando es util usar estos metodos
+        //1. Cuando queremos que la funcion se ejecute en un futuro
+        //2. Cuando queremos que la funcion se ejecute en un futuro pero con los argumentos que se le pasan
+
+        const buttons = document.getElementsByClassName('call-to-action');
+
+        Array.prototype.forEach.call(buttons, button => {
+            button.onclick = () => alert('Nunca pares de aprender!');
+        });
+    </script>
+</body>
+</html>
