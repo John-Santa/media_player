@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=a, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <a href="/ejercicios/">Go back</a>
+    <p><em>Abre la consola!</em></p>
+
+    <script>
+        /**
+         * This
+         * Hace referencia al alcance de una clase, objeto o funcion.
+        */
+
+        /**
+         * this en el scope global
+         * En un contexto global, this apunta al objeto global osea window.
+        */
+        console.log(`this: ${this}`);
+
+        /**
+         * This en el scope de una funcion
+         * En un contexto de una funcion, this apunta al objeto global osea window.
+        */
+        function whoIsThis(){
+            return this;
+        }
+
+        console.log(`this en una funcion: ${whoIsThis()}`);
+
+        /**
+         * Use strict
+         * Strict mode es un modo que se puede encender manualmente usando la palabra clave "use strict".
+        */
+        function whoIsThis2(){
+            'use strict';
+            return this;
+        }
+
+        console.log(`this en una funcion: ${whoIsThis2()}`);
+
+        /**
+         * This en contexto de un objeto
+         * El this en un objeto es el objeto mismo.
+         * This se refiere al objeto que esta ejecutando un pedazo de codigo.
+        */
+
+        const person = {
+            name: 'Juan',
+            age: 30,
+            sayHello: function(){
+                return `Hello, my name is ${this.name}`;
+            }
+        };
+
+        console.log(`person sayHello: ${person.sayHello()}`);
+
+        const action = person.sayHello;
+        console.log(`action: ${action()}`);
+
+        /**
+         * This en contexto de una clase
+        */
+        class Person {
+            constructor(name, age) {
+                this.name = name;
+                this.age = age;
+            }
+        }
+
+        Person.prototype.sayHello = function(){
+            return `Hello, my name is ${this.name}`;
+        }
+
+        const john = new Person('John', 25);
+        console.log(`john: ${john.sayHello()}`);
+
+    </script>
+</body>
+</html>
