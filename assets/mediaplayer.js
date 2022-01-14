@@ -36,6 +36,7 @@ MediaPlayer.prototype.mute = function(){
  * Los eventos son propios de los elementos del DOM
  * Los eventos son llamados desde el botón
  * onclick -> Se ejecuta cuando se hace click en el botón
+ * para 
 */
 MediaPlayer.prototype.togglePlay = function () {
     if(this.media.paused){

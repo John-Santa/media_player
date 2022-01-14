@@ -7,7 +7,7 @@ const muteButon = document.querySelector('#unmute_mute');
 
 
 const player = new MediaPlayer({el: video, plugins: [
-    new AutoPlay()
+    //new AutoPlay()
 ]});
 
 playButton.onclick = () => player.togglePlay();
